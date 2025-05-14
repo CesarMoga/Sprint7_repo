@@ -30,3 +30,28 @@ with col2:
                            nbins=30)
         st.write("Distribución de años de modelo de los vehículos:")
         st.plotly_chart(fig, use_container_width=True)
+
+# Sección para gráficos de dispersión
+st.subheader("Relaciones entre Variables")
+
+col3, col4 = st.columns(2)
+
+with col3:
+    if st.button("Mostrar Precio vs Año del Modelo"):
+        fig = px.scatter(df, x='model_year', y='price',
+                         title='Precio vs Año del Modelo',
+                         labels={'model_year': 'Año del Modelo',
+                                 'price': 'Precio ($)'},
+                         trendline="lowess")
+        st.write("Relación entre el año del modelo y el precio de los vehículos:")
+        st.plotly_chart(fig, use_container_width=True)
+
+with col4:
+    if st.button("Mostrar Precio vs Kilometraje"):
+        fig = px.scatter(df, x='odometer', y='price',
+                         title='Precio vs Kilometraje',
+                         labels={'odometer': 'Kilometraje',
+                                 'price': 'Precio ($)'},
+                         trendline="lowess")
+        st.write("Relación entre el kilometraje y el precio de los vehículos:")
+        st.plotly_chart(fig, use_container_width=True)
